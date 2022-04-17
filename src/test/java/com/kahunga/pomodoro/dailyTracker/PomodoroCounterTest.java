@@ -1,0 +1,15 @@
+package com.kahunga.pomodoro.dailyTracker;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@SpringBootTest
+public class PomodoroCounterTest {
+    @Autowired
+    PomodoroRepository pomodoroRepository;
+    PomodoroCounter pomodoroCounter;
+    void canSavePomodoro() {
+        pomodoroCounter = PomodoroCounter.createInstance();
+    }
+}
