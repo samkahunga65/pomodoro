@@ -1,38 +1,40 @@
 package com.kahunga.pomodoro.dailyTracker;
 
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 
+@Service
 @Slf4j
-@NoArgsConstructor
-public class PomodoroCounter {
-    private static PomodoroCounter pomodoroCounterInstance = null;
+public class PomCounterServiceImpl implements PomCounterService{
     private PomodoroTimer currentPomodoroTimer;
+
     @Autowired
     PomodoroServiceImpl pomodoroService;
 
-    public static PomodoroCounter createInstance() {
-        if (pomodoroCounterInstance==null) {
-            pomodoroCounterInstance = new PomodoroCounter();
-        }
-        return pomodoroCounterInstance;
-    }
+    @Override
     public void startPomodoroCounter(int pomodoroLengthInMinutes) {
         currentPomodoroTimer = new PomodoroTimer();
         currentPomodoroTimer.start();
         log.info("Started counter");
     }
+
+    @Override
     public void pausePomodoroCounter() {
-        currentPomodoroTimer.pause();
-    }
-    public void continuePomodoroCounter() {
-        currentPomodoroTimer.continueCounting();
+
     }
 
-    public void savePomodoro(LocalDateTime timeStarted, LocalDateTime timeCompleted) {
-        Pomodoro save = pomodoroService.savePomodoro(timeStarted, timeCompleted);
+    @Override
+    public void continuePomodoroCounter() {
+
+    }
+
+    @Override
+    public Pomodoro savePomodoro(LocalDateTime timeStarted, LocalDateTime timeCompleted) {
+        var save =  pomodoroService.savePomodoro(timeStarted, timeCompleted);
         log.info("save a pomodoro of id {}",save.getId());
+        return save;
     }
 }

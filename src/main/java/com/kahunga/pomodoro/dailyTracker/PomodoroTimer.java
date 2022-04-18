@@ -2,6 +2,7 @@ package com.kahunga.pomodoro.dailyTracker;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,8 @@ public class PomodoroTimer {
     private LocalDateTime originalTimeStarted = LocalDateTime.now();
     private LocalDateTime originalScheduledEnd = originalTimeStarted.plus(timerLength, ChronoUnit.MILLIS);
     private LocalDateTime timeStarted = LocalDateTime.now();
-    private PomodoroCounter pomodoroCounter = PomodoroCounter.createInstance();
+    @Autowired
+    private PomCounterServiceImpl pomodoroCounter;
     public void start() {
         this.timerTask = new TimerTask() {
             @Override

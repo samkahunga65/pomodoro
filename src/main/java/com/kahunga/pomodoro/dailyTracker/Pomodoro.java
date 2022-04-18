@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "pomodoro")
 public class Pomodoro {
     @Id
@@ -28,4 +27,15 @@ public class Pomodoro {
 
     @Column(name = "message")
     private String message;
+
+    public Pomodoro(LocalDateTime timeStarted, LocalDateTime timeCompleted) {
+        this.timeStarted = timeStarted;
+        this.timecompleted = timeCompleted;
+    }
+
+    public Pomodoro(LocalDateTime timeStarted, LocalDateTime timecompleted, String message) {
+        this.timeStarted = timeStarted;
+        this.timecompleted = timecompleted;
+        this.message = message;
+    }
 }
