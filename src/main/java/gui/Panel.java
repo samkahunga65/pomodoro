@@ -1,5 +1,6 @@
 package gui;
 import javax.swing.JFrame;
+import java.awt.*;
 
 public class Panel {
     private static Panel  panel = null;
@@ -14,6 +15,7 @@ public class Panel {
             frame.setTitle("Pomodoro");
             frame.setSize(420, 420);
             frame.setVisible(true);
+            frame.getContentPane().setBackground(new Color(123,50,250));
             panel = new Panel();
             return panel;
         } else {
