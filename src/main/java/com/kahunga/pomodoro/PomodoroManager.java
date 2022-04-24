@@ -1,18 +1,18 @@
 package com.kahunga.pomodoro;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class PomodoroManager {
     private static PomodoroManager pomodoroManagerCreated = null;
 
-    private PomodoroManager() {
+    @Autowired
+    PomodoroTimer pomodoroTimer;
 
+    public void startPomodoroCounter() {
+        pomodoroTimer.start();
     }
-    public static PomodoroManager create() {
-        if (pomodoroManagerCreated == null) {
-            return new PomodoroManager();
-        } else {
-            return pomodoroManagerCreated;
-        }
-    }
-
 
 }
